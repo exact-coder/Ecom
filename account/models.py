@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser,BaseUserManager
 from django.utils.translation import gettext_lazy as _
 # Create your models here.
 
-class CustomerUserManager(BaseUserManager):
+class CustomUserManager(BaseUserManager):
     """Defination a model for User model with no username field"""
 
     def _create_user(self, email, password=None, **extra_fields):
@@ -35,12 +35,12 @@ class CustomerUserManager(BaseUserManager):
 
 
 # For login by Email instead of Username
-class Customer(AbstractUser):
+class CustomUser(AbstractUser):
     username = None
     email = models.EmailField(_("Email Address"), max_length=254,unique=True)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
-    object = CustomerUserManager()
+    object = CustomUserManager()
 
 
 
